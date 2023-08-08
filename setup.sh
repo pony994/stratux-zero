@@ -21,8 +21,22 @@ sudo apt-get install -y tcpdump
 sudo apt-get install -y libusb-1.0-0-dev
 sudo apt-get install -y build-essential
 sudo apt-get install -y cmake
+# install go 1.17 version and update .bashrc 
 wget https://go.dev/dl/go1.17.13.linux-armv6l.tar.gz
 sudo tar -C /usr/local -xzf go1.17.13.linux-armv6l.tar.gz
+
+#!/bin/bash
+# Check for the existence of GOPATH
+if ! grep -q "export GOPATH=\$HOME/go" "$HOME/.bashrc"; then
+  echo "export GOPATH=\$HOME/go" >> "$HOME/.bashrc"
+  echo "Added GOPATH to .bashrc"
+fi
+
+# Check for the existence of the Go binary path
+if ! grep -q "export PATH=\$PATH:/usr/local/go/bin" "$HOME/.bashrc"; then
+  echo "export PATH=\$PATH:/usr/local/go/bin" >> "$HOME/.bashrc"
+  echo "Added Go binary path to .bashrc"
+fi
 sudo apt-get install -y mercurial
 sudo apt-get install -y autoconf
 sudo apt-get install -y fftw3

@@ -92,7 +92,7 @@ make
 sudo make install
 
 # build wiringpi
-sudo apt-get purge wiringpi
+sudo apt-get purge -y wiringpi
 cd /opt/stratux
 git clone https://github.com/WiringPi/WiringPi.git wiringPi
 cd wiringPi

@@ -1,0 +1,37 @@
+diff --git a/main/fancontrol.go b/main/fancontrol.go
+index 5db5519..fdc4bcb 100644
+--- a/main/fancontrol.go
++++ b/main/fancontrol.go
+@@ -226,16 +226,19 @@ func init() {
+ }
+ 
+ func main() {
+-	srv, err := daemon.New(name, description, []string{}...)
+-	if err != nil {
+-		errlog.Println("Error: ", err)
+-		os.Exit(1)
+-	}
+-	service := &Service{srv}
+-	status, err := service.Manage()
+-	if err != nil {
+-		errlog.Println(status, "\nError: ", err)
+-		os.Exit(1)
+-	}
+-	fmt.Println(status)
++    kind := daemon.SystemDaemon // or daemon.UserDaemon depending on your needs
++    srv, err := daemon.New(name, description, kind, []string{}...)
++    if err != nil {
++        errlog.Println("Error: ", err)
++        os.Exit(1)
++    }
++    service := &Service{srv}
++    status, err := service.Manage()
++    if err != nil {
++        errlog.Println(status, "\nError: ", err)
++        os.Exit(1)
++    }
++    fmt.Println(status)
+ }
++
++	
+\ No newline at end of file

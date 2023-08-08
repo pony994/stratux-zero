@@ -98,8 +98,6 @@ git clone https://github.com/WiringPi/WiringPi
 cd WiringPi
 ./build debian
 ls debian-template/*deb
-make static
-sudo make install-static
 }
 
 function build_stratux {

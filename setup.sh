@@ -68,6 +68,7 @@ git submodule update --init --recursive goflying
 patch < "$workdir/stratux_Makefile.patch" Makefile
 patch < "$workdir/stratux_network_go.patch" main/network.go
 patch < "$workdir/dump1090.patch" dump1090/Makefile
+patch < "$workdir/fancontrol.patch" main/fancontrol.go
 
 
 # build librtlsdr

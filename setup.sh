@@ -94,12 +94,10 @@ sudo make install
 # build wiringpi
 sudo apt-get purge -y wiringpi
 cd /opt/stratux
-git clone https://github.com/WiringPi/WiringPi.git wiringPi
-cd wiringPi
-git checkout 5bbb6e3
-patch < "$workdir/wiringPi_Makefile.patch" wiringPi/Makefile
-sudo ./build
-cd wiringPi
+git clone https://github.com/WiringPi/WiringPi
+cd WiringPi
+./build debian
+ls debian-template/*deb
 make static
 sudo make install-static
 }

@@ -21,7 +21,8 @@ sudo apt-get install -y tcpdump
 sudo apt-get install -y libusb-1.0-0-dev
 sudo apt-get install -y build-essential
 sudo apt-get install -y cmake
-sudo apt-get install -y golang
+wget https://go.dev/dl/go1.17.13.linux-armv6l.tar.gz
+sudo tar -C /usr/local -xzf go1.17.13.linux-armv6l.tar.gz
 sudo apt-get install -y mercurial
 sudo apt-get install -y autoconf
 sudo apt-get install -y fftw3
@@ -46,12 +47,14 @@ sudo mkdir /opt/stratux
 sudo chown pi.pi /opt/stratux
 
 cd /opt/stratux
-git clone --depth=1 --branch v1.6r1 https://github.com/cyoung/stratux.git stratux_src
+git clone --depth=1 --branch v1.6r1-eu029 https://github.com/cyoung/stratux.git stratux_src
 cd stratux_src
 git clone --depth=1 --branch stratux https://github.com/Determinant/dump1090-fa-stratux.git dump1090
 git submodule update --init --recursive goflying
 patch < "$workdir/stratux_Makefile.patch" Makefile
 patch < "$workdir/stratux_network_go.patch" main/network.go
+patch < "$workdir/dump1090.patch" dump1090/Makefile
+
 
 # build librtlsdr
 cd /opt/stratux
@@ -87,10 +90,11 @@ cd wiringPi
 }
 
 function build_stratux {
-export GOPATH=/opt/stratux/go
+export GOPATH=$HOME/go
 export GOROOT=$(go env | grep GOROOT | sed 's/[^=]*="\(.*\)"$/\1/g')
+export GO111MODULE="off"
 export CGO_CFLAGS_ALLOW=-L/opt/stratux/stratux_src
-export PATH=$GOPATH/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 
 cd /opt/stratux/stratux_src
 make

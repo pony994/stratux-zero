@@ -24,6 +24,7 @@ sudo apt-get install -y cmake
 # install go 1.17 version and update .bashrc 
 wget https://go.dev/dl/go1.17.13.linux-armv6l.tar.gz
 sudo tar -C /usr/local -xzf go1.17.13.linux-armv6l.tar.gz
+source ~/.bashrc 
 
 
 echo "export GOPATH=\$HOME/go" >> "$HOME/.bashrc"

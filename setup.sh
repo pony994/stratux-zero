@@ -25,18 +25,12 @@ sudo apt-get install -y cmake
 wget https://go.dev/dl/go1.17.13.linux-armv6l.tar.gz
 sudo tar -C /usr/local -xzf go1.17.13.linux-armv6l.tar.gz
 
-#!/bin/bash
-# Check for the existence of GOPATH
-if ! grep -q "export GOPATH=\$HOME/go" "$HOME/.bashrc"; then
-  echo "export GOPATH=\$HOME/go" >> "$HOME/.bashrc"
-  echo "Added GOPATH to .bashrc"
-fi
 
-# Check for the existence of the Go binary path
-if ! grep -q "export PATH=\$PATH:/usr/local/go/bin" "$HOME/.bashrc"; then
-  echo "export PATH=\$PATH:/usr/local/go/bin" >> "$HOME/.bashrc"
-  echo "Added Go binary path to .bashrc"
-fi
+echo "export GOPATH=\$HOME/go" >> "$HOME/.bashrc"
+echo "Added GOPATH to .bashrc"
+echo "export PATH=\$PATH:/usr/local/go/bin" >> "$HOME/.bashrc"
+echo "Added Go binary path to .bashrc"
+
 sudo apt-get install -y mercurial
 sudo apt-get install -y autoconf
 sudo apt-get install -y fftw3
